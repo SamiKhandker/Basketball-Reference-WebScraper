@@ -2,19 +2,19 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# NBA season we will be analyzing
+# NBA season to be analyzed
 year = 2019
-# URL page we will scraping (see image above)
+# URL page to be scraped
 url = "https://www.basketball-reference.com/leagues/NBA_2019_per_game.html".format(year)
-# this is the HTML from the given URL
+# HTML from the URL
 html = urlopen(url)
 soup = BeautifulSoup(html, 'html.parser')
 
 # use findALL() to get the column headers
 soup.findAll('tr', limit=2)
-# use getText()to extract the text we need into a list
+# use getText()to extract the text needed into a list
 headers = [th.getText() for th in soup.findAll('tr', limit=2)[0].findAll('th')]
-# exclude the first column as we will not need the ranking order from Basketball Reference for the analysis
+# exclude the first column as the ranking order from Basketball Reference is not needed for the analysis
 headers = headers[1:]
 headers
 
